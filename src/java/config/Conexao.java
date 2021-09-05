@@ -18,7 +18,7 @@ public class Conexao {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-                    return DriverManager.getConnection("jdbc:mysql://localhost/javaweb?userTimezone=true&serverTimezone=UTC&user=root&password=");
+                return DriverManager.getConnection("jdbc:mysql://localhost/javaweb?userTimezone=true&serverTimezone=UTC&user=root&password=");
             
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);

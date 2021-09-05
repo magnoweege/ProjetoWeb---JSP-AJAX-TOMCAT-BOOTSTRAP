@@ -42,49 +42,38 @@ ResultSet rs = null;
             </div>
             <p align=center class="text-light mt-2">
                 <% 
-                    
                     String usuario  = request.getParameter("txtusuario"); 
                     String senha  = request.getParameter("txtsenha");
                     String nomeUsuario  = "";
                     String user = "root";
                     String pass = "123";
-                    
                     String userA = "", passA = "";
+                
                     int i = 0;
-                    
                     try {
-                  
-                    st = new Conexao().conectar().createStatement();
-                    rs = st.executeQuery("SELECT * FROM usuarios where usuario = '"+usuario+"' and senha = '"+senha+"'");
-                    while(rs.next()){
-                        
-                           userA = (rs.getString(3));
-                           passA = (rs.getString(4));
-                           nomeUsuario = rs.getString(2);
-                           
-                           //rs.last();
-                           i ++;//= rs.getRow();
-                           
-                    }  
+                        st = new Conexao().conectar().createStatement();
+                        rs = st.executeQuery("SELECT * FROM usuarios where usuario = '"+usuario+"' and senha = '"+senha+"'");
+                        while(rs.next()){
+                            userA = (rs.getString(3));
+                            passA = (rs.getString(4));
+                            nomeUsuario = rs.getString(2);
+                            i ++;
+                        }  
                     }catch(Exception e){
                         out.print(e);
                     }
-                   
-                     
                     if (usuario == null || senha==null){
                         out.println("Preencha os dados");
                     }else{
-                      if (i>0){
-                          session.setAttribute("nomeUsuario", nomeUsuario);
-                          response.sendRedirect("usuarios.jsp");
-                        //out.print(usuario);
-                    }else{
-                          out.println("Dados errados");
-                      }
+                        if (i>0){
+                            session.setAttribute("nomeUsuario", nomeUsuario);
+                            response.sendRedirect("usuarios.jsp");
+                        }else{
+                            out.println("Dados errados");
+                        }
                     }
                 %>
             </p>
         </div>
     </div>
-
 </body>
